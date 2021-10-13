@@ -4,6 +4,7 @@ from requests.exceptions import ReadTimeout
 filename = sys.argv[1]
 foundUrls = [];
 resolvedUrls = {}
+invalidUrls = [];
 fileData = None
 regex = re.compile(r"http:\/\/www.nessus.org\/u.*")
 
@@ -32,11 +33,17 @@ for url in foundUrls:
         print(resolvedUrls[url])
     except ReadTimeout:
         print('Count not resolve due to timeout: ' + url)
+        invalidUrls.append(url)
 
 print('Replacing References')
 
 for original, resolved in resolvedUrls.items():
     fileData = fileData.replace(original, resolved)
+
+if len(invalidUrls):
+    print('Removing Invalid References')
+    for url in invalidUrls:
+        fileData = fileData.replace(url, '')
 
 f = open('resolvedReferences.nessus', 'w')
 f.write(fileData)
