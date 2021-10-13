@@ -30,7 +30,7 @@ for url in foundUrls:
     resp = session.head(url, allow_redirects=True).url
     try: 
         resolvedUrls[url] = requests.get(resp, timeout=10).url
-        print(resolvedUrls[url])
+        print(url + ' - ' + resolvedUrls[url])
     except ReadTimeout:
         print('Count not resolve due to timeout: ' + url)
         invalidUrls.append(url)
