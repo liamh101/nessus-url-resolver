@@ -31,9 +31,10 @@ for url in foundUrls:
     try: 
         resolvedUrls[url] = requests.get(resp, timeout=10).url
         print(url + ' - ' + resolvedUrls[url])
-    except ReadTimeout:
-        print('Count not resolve due to timeout: ' + url)
-        invalidUrls.append(url)
+    except:
+        print('Count not resolve: ' + url)
+        pass
+
 
 print('Replacing References')
 
