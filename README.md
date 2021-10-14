@@ -18,6 +18,6 @@ Please feel free to leave feedback, bugs and feature requests.
 
 Currently I'd like to add the following:
 
-- [] Improve reference regex
+- :white_check_mark: Improve reference regex
 - [] Script outputs copy of file with original filename referenced
 - [] optional verbose levels

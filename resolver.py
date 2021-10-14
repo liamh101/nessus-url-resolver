@@ -6,17 +6,16 @@ foundUrls = [];
 resolvedUrls = {}
 invalidUrls = [];
 fileData = None
-regex = re.compile(r"http:\/\/www.nessus.org\/u.*")
 
 print("opening File " + filename)
 
 with open(filename, 'r') as file:
     fileData = file.read()
 
-results = regex.findall(fileData)
+results = re.findall(r"((http|https):\/\/www.nessus.org\/u.*[^<\/see_also>|\n])", fileData)
 
 for result in results:
-    foundUrls.append(result.replace('</see_also>', '').strip())
+    foundUrls.append(result[0])
 
 foundUrls = list(set(foundUrls))
 
