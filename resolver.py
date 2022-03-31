@@ -38,6 +38,12 @@ for url in foundUrls:
 print('Replacing References')
 
 for original, resolved in resolvedUrls.items():
+    resolved = resolved.replace('&', '&#38;')
+    resolved = resolved.replace('=', '&#61;')
+    resolved = resolved.replace('?', '&#63;')
+    resolved = resolved.replace('%', '&#37;')
+    resolved = resolved.replace('!', '&#33;')
+
     fileData = fileData.replace(original, resolved)
 
 if len(invalidUrls):
