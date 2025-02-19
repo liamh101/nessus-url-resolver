@@ -12,7 +12,7 @@ print("opening File " + filename)
 with open(filename, 'r') as file:
     fileData = file.read()
 
-results = re.findall(r"((http|https):\/\/www.nessus.org\/u.*[^<\/see_also>|\n])", fileData)
+results = re.findall(r"((http|https):\/\/www.nessus.org\/u[^<\n]*)", fileData)
 
 for result in results:
     foundUrls.append(result[0])
